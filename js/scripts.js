@@ -1,17 +1,19 @@
 // business logic for Places
-var rockyHorror = new times("4pm", "12am")
-var conanTheBarbarian = new times("2pm", "8pm")
-var thePrincessBride= new time("12pm","10pm")
-var theDarkCrystal = new time("3pm","9:30pm")
+var rockyHorror = new movieTix("4pm", "12am")
+var conanTheBarbarian = new movieTix("2pm", "8pm")
+var thePrincessBride = new movieTix("12pm","10pm")
+var theDarkCrystal = new movieTix("3pm","9:30pm")
 
-function places(country, landmark, activity) {
-  this.country = country,
-  this.landmark = landmark,
-  this.activity = activity
+function movieTix(firstShowing, secondShowing) {
+  this.firstShowing = firstShowing,
+  this.secondShowing = secondShowing;
+  // this.priceByTime();
+  // this.priceByAge();
+
 }
 
-places.prototype.totalInfo = function() {
-return "<li>" + "Country: " + this.country + "</li>" + "<li>" + "Landmark: " + this.landmark + "</li>" + "<li>" + "Activity: " + this.activity + "</li>";
+movieTix.prototype.timeList = function() {
+return "<li>" + "First Showing: " + this.firstShowing + "</li>" + "<li>" + "Second Showing: " + this.secondShowing + "</li>";
 }
 
 // Place.forEach(function(place) {
@@ -19,19 +21,29 @@ return "<li>" + "Country: " + this.country + "</li>" + "<li>" + "Landmark: " + t
 //   console.log("\n");
 // });
 
+function showTicket(priceByAge){
+
+}
+
 // user interface logic
 
+function timesListeners() {
+  $("ul#rockyHorrorHidden").on("click", "li", function() {
+    showTicket();
+  });
+});
+
 $(function() {
-  $("#portland").click(function() {
-    $("#portlandHidden").html(portland.totalInfo());
-    $("#portlandHidden").toggle();
+  $("#btn1").click(function() {
+    $("#rockyTimesHidden").html(rockyHorror.timeList());
   });
-  $("#kyoto").click(function() {
-    $("#kyotoHidden").html(kyoto.totalInfo());
-    $("#kyotoHidden").toggle();
+  $("#btn2").click(function() {
+    $("#conanTimesHidden").html(conanTheBarbarian.timeList());
   });
-  $("#bordeaux").click(function() {
-    $("#bordeauxHidden").html(bordeaux.totalInfo());
-    $("#bordeauxHidden").toggle();
+  $("#btn3").click(function() {
+    $("#princessTimesHidden").html(thePrincessBride.timeList());
+  });
+  $("#btn4").click(function() {
+    $("#darkTimesHidden").html(theDarkCrystal.timeList());
   });
 });
